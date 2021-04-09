@@ -8,7 +8,9 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-import StartScreen from './screens/start';
+import StartScreen from './screens/home';
+import RootNavigation from './router/RootNavigation'
+
 
 const App = () => {
     const isDarkMode = useColorScheme() === 'dark';
@@ -20,7 +22,9 @@ const App = () => {
     return (
         <SafeAreaView style={backgroundStyle}>
             <ScrollView style={backgroundStyle}>
-                <StartScreen />
+                {/* <StartScreen />
+                 */}
+                 <RootNavigation/>
             </ScrollView>
         </SafeAreaView>
     );

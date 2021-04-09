@@ -19,7 +19,7 @@ import logo_react from '../../assets/Onboarding.png';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import ButtonElement from '../../components/elements/button/button';
 
-const StartScreen = () => {
+const StartScreen = ({navigation}) => {
     const isDarkMode = useColorScheme() === 'dark';
 
     const backgroundStyle = {
@@ -68,7 +68,9 @@ const StartScreen = () => {
                             Let’s join our community to cook better food!
                         </Text>
                         <View style={styles.button}>
-                            <ButtonElement textButton="Get Started!" />
+                            <ButtonElement 
+                            onPress={() => navigation.navigate('HomeScreen')}
+                            textButton="Get Started!" />
                         </View>
                     </View>
                 </View>
@@ -84,11 +86,8 @@ const styles = EStyleSheet.create({
     $width: height['width'],
     container: {
         minHeight: '$height',
-        // width: 350,
     },
     imageView: {
-        // margin: 10,
-        // width: 300,
         alignItems: 'center',
     },
     content: {
@@ -97,11 +96,6 @@ const styles = EStyleSheet.create({
         textAlign: 'center',
     },
     logo: {
-        // marginLeft: '1rem',
-        // marginBottom: '1.2rem',
-        // width: 406,
-        // height: '25.37rem',
-        // justifyContent: 'center',
         alignItems: 'center',
     },
     title: {
@@ -110,26 +104,23 @@ const styles = EStyleSheet.create({
         fontFamily: 'inter',
         fontWeight: '700',
         textAlign: 'center',
-        marginTop: '3rem',
+        marginTop: '-0.3rem',
+        // marginTop: '3rem',
     },
     text: {
         width: '14.06rem',
         height: '3.36rem',
         fontSize: '1.06rem',
         textAlign: 'center',
-        marginBottom: '2rem',
-        marginTop: '1rem',
+        marginTop: '.5rem',
+        // marginTop: '1rem',
         fontWeight: '500',
-        // position: absolute;
-        // width: 209,
-        // height: '4.7rem',
-        // marginLeft: 83,
-        // marginTop: 558,
+        opacity: 0.5,
     },
     button: {
-        // position: absolute,
-        // paddingHorizontal: 50,
-        marginTop: 72}
+        marginTop: 20
+        // marginTop: 72
+    },
 });
 
 export default StartScreen;
