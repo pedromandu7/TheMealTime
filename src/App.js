@@ -1,43 +1,30 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, useColorScheme, View} from 'react-native';
 import {
-    Colors,
-    DebugInstructions,
-    Header,
-    ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+    SafeAreaView,
+    ScrollView,
+    useColorScheme,
+    View,
+    StatusBar,
+} from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import StartScreen from './screens/home';
-import RootNavigation from './router/RootNavigation'
+// import StartScreen from './screens/home';
+import RootNavigation from './router/RootNavigation';
 
-
+const Tab = createBottomTabNavigator();
 const App = () => {
-    const isDarkMode = useColorScheme() === 'dark';
-
-    const backgroundStyle = {
-        backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-    };
-
     return (
-        <SafeAreaView style={backgroundStyle}>
-            <ScrollView style={backgroundStyle}>
-                {/* <StartScreen />
-                 */}
-                 <RootNavigation/>
-            </ScrollView>
-        </SafeAreaView>
+        <SafeAreaProvider >
+            <RootNavigation />
+        </SafeAreaProvider>
     );
 };
-
-const styles = EStyleSheet.create({
-    sectionContainer: {
-        marginTop: 32,
-        paddingHorizontal: 24,
-    },
-});
 
 EStyleSheet.build({
     $rem: 16,
 });
+
 export default App;

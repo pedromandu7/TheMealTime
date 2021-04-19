@@ -1,10 +1,6 @@
 import React from 'react';
 import {
-    Button,
-    Image,
-    SafeAreaView,
-    ScrollView,
-    StatusBar,
+    TouchableOpacity,
     TouchableHighlight,
     Text,
     useColorScheme,
@@ -17,41 +13,53 @@ import {
     ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-const ButtonElement = ({textButton, imageUrl, containerStyle}) => {
+
+const ButtonElement = ({
+    textButton,
+    variant,
+    containerStyle,
+    onButtonPress
+}) => {
     const isDarkMode = useColorScheme() === 'dark';
 
     const backgroundStyle = {
         backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
     };
 
+    let colors = ['#1FCC79',  '#159356'];
+
+    if (variant == 'danger') {
+        colors = ['#FF5842',  '#FF5842'];
+    }
+
     return (
         <View
             style={{
                 alignItems: 'center',
             }}>
-            <TouchableHighlight
+            <TouchableOpacity
                 style={[
                     styles.submit,
                     {
-                        borderColor: !isDarkMode ? '#1FCC79' : '#159356',
+                        borderColor: !isDarkMode ? colors[0] : colors[1],
                     },
                 ]}
-                // onPress={() => this.submitSuggestion(this.props)}
-                underlayColor="#fff">
+                underlayColor="#fff"
+                onPress={() => onButtonPress()}>
                 <Text
                     style={[
                         styles.text,
                         {
                             color: '#ffffff',
                             backgroundColor: !isDarkMode
-                                ? '#1FCC79'
-                                : '#159356',
+                                ? colors[0] : colors[1],
                         },
                     ]}>
                     {textButton}
                 </Text>
-            </TouchableHighlight>
+            </TouchableOpacity>
         </View>
     );
 };
@@ -64,10 +72,7 @@ const styles = EStyleSheet.create({
     text: {
         paddingVertical: 15,
         width: '100%',
-        // height: '100%',
         borderRadius: 70,
-        // borderWidth: 1,
-        // borderColor: '#fff',
         textAlign: 'center',
         fontWeight: '700',
     },

@@ -8,6 +8,7 @@ import {
     Text,
     useColorScheme,
     View,
+    TouchableOpacity,
 } from 'react-native';
 import {
     Colors,
@@ -18,20 +19,15 @@ import {
 import logo_react from '../../assets/Onboarding.png';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import ButtonElement from '../../components/elements/button/button';
+import GeneralLayout from '../../components/GeneralLayout/index';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import TextElement from '../../components/elements/text/index';
 
 const StartScreen = ({navigation}) => {
     const isDarkMode = useColorScheme() === 'dark';
-
-    const backgroundStyle = {
-        backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-    };
-
     return (
-        <SafeAreaView style={backgroundStyle}>
-            <StatusBar
-                barStyle={isDarkMode ? 'light-content' : 'darker-content'}
-            />
-            <ScrollView style={backgroundStyle}>
+        <GeneralLayout
+            layout={
                 <View style={styles.container}>
                     <View
                         style={[
@@ -45,46 +41,37 @@ const StartScreen = ({navigation}) => {
                         <Image style={styles.logo} source={logo_react} />
                     </View>
                     <View style={styles.content}>
-                        <Text
-                            style={[
-                                styles.title,
-                                {
-                                    color: isDarkMode
-                                        ? Colors.light
-                                        : Colors.dark,
-                                },
-                            ]}>
-                            Start Cooking
-                        </Text>
-                        <Text
-                            style={[
-                                styles.text,
-                                {
-                                    color: isDarkMode
-                                        ? Colors.light
-                                        : Colors.dark,
-                                },
-                            ]}>
-                            Let’s join our community to cook better food!
-                        </Text>
+                        <TextElement variant="title" text=" Start Cooking" />
+                        <TextElement
+                            // colorText= 'blue'
+                            textAlign="center"
+                            text="Let’s join our community to cook better food!"
+                        />
                         <View style={styles.button}>
-                            <ButtonElement 
-                            onPress={() => navigation.navigate('HomeScreen')}
-                            textButton="Get Started!" />
+                            <ButtonElement
+                                // variant="danger"
+                                textButton="Get Started!"
+                                onButtonPress={() =>
+                                    navigation.navigate('HomeScreen')
+                                }
+                            />
                         </View>
                     </View>
                 </View>
-            </ScrollView>
-        </SafeAreaView>
+            }
+        />
     );
 };
 
-let height = Dimensions.get('window');
-// console.log(height['height'])
+let dimensions = Dimensions.get('window');
 const styles = EStyleSheet.create({
-    $height: height['height'],
-    $width: height['width'],
+    $height: dimensions['height'], //variável do EStyle
+    $width: dimensions['width'],
+
     container: {
+        minHeight: '$height',
+    },
+    containers: {
         minHeight: '$height',
     },
     imageView: {
@@ -98,28 +85,8 @@ const styles = EStyleSheet.create({
     logo: {
         alignItems: 'center',
     },
-    title: {
-
-        fontSize: '1.3rem',
-        fontFamily: 'inter',
-        fontWeight: '700',
-        textAlign: 'center',
-        marginTop: '-0.3rem',
-        // marginTop: '3rem',
-    },
-    text: {
-        width: '14.06rem',
-        height: '3.36rem',
-        fontSize: '1.06rem',
-        textAlign: 'center',
-        marginTop: '.5rem',
-        // marginTop: '1rem',
-        fontWeight: '500',
-        opacity: 0.5,
-    },
     button: {
-        marginTop: 20
-        // marginTop: 72
+        marginTop: 20,
     },
 });
 

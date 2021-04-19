@@ -18,7 +18,8 @@ const RootStack = createStackNavigator();
 const RootNavigation = () => {
     return (
         <NavigationContainer>
-            <View style={{flex: 1}}>
+            {/* <View style={{flex: 1}}> */}
+
                 <RootStack.Navigator initialRouteName="StartScreen">
                     <RootStack.Screen
                         name="StartScreen"
@@ -36,7 +37,7 @@ const RootNavigation = () => {
                         }}
                     />
                 </RootStack.Navigator>
-            </View>
+            {/* </View> */}
         </NavigationContainer>
     );
 };
@@ -50,5 +51,6 @@ const styles = EStyleSheet.create({
 
 EStyleSheet.build({
     $rem: 16,
+    $Color: 'darkblue',
 });
 export default RootNavigation;

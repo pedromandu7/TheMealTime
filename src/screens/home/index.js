@@ -15,9 +15,10 @@ import {
     Header,
     ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import logo_react from '../../assets/Onboarding.png';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import ButtonElement from '../../components/elements/button/button';
+import GeneralLayout from '../../components/GeneralLayout';
+import SearchBarComponent from '../../components/SearchBar';
 
 const HomeScreen = () => {
     const isDarkMode = useColorScheme() === 'dark';
@@ -27,19 +28,18 @@ const HomeScreen = () => {
     };
 
     return (
-        <SafeAreaView style={backgroundStyle}>
-            <StatusBar
-                barStyle={isDarkMode ? 'light-content' : 'darker-content'}
-            />
-            <ScrollView style={backgroundStyle}>
-                <Text>nothing, ainda</Text>
-            </ScrollView>
-        </SafeAreaView>
+        <GeneralLayout
+            layout={
+                <View>
+                    <SearchBarComponent/>
+                </View>
+                
+            }
+        />
     );
 };
 
 let height = Dimensions.get('window');
-// console.log(height['height'])
 const styles = EStyleSheet.create({
     $height: height['height'],
     $width: height['width'],
@@ -58,7 +58,6 @@ const styles = EStyleSheet.create({
         alignItems: 'center',
     },
     title: {
-
         fontSize: '1.3rem',
         fontFamily: 'inter',
         fontWeight: '700',
@@ -77,8 +76,11 @@ const styles = EStyleSheet.create({
         opacity: 0.5,
     },
     button: {
-        marginTop: 20
+        marginTop: 20,
         // marginTop: 72
+    },
+    textTest: {
+        fontSize: '3rem',
     },
 });
 
